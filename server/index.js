@@ -1,6 +1,13 @@
 var https = require('https');
 var express = require('express');
+var cors = require('cors');
 var app = express();
+
+// var corsOptions = {
+//     origin: '*',
+// }
+
+app.use(cors())
 
 app.get('/', function (req, res) {
     res.end('Youtube As Audio Player - Server');

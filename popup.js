@@ -62,7 +62,7 @@
 
         // https://youtube2mp3api.com/@grab?vidID=kw4tT7SCmaY&format=mp3&streams=mp3&api=button
         $.ajax({
-            url: 'http://localhost:9000/grab/' + videoId,
+            url: 'https://yaap-app.herokuapp.com/grab/' + videoId,
             success: function(data) {
                 var song = $('<div></div>').html(data).find('a').attr('href');
                 if (song) {
