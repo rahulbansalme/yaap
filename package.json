@@ -1,5 +1,5 @@
 {
-  "name": "Youtube As Audio Player",
+  "name": "youtube-as-audio-player",
   "version": "1.0.0",
   "description": "Youtube As Audio Player",
   "engines": {
@@ -8,5 +8,9 @@
   "main": "server/index.js",
   "scripts": {
     "start": "node server/index.js"
+  },
+  "dependencies": {
+    "express": "^4.16.3",
+    "https": "^1.0.0"
   }
 }

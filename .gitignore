@@ -1,0 +1,15 @@
+node_modules
+npm-debug.log
+broken-links.log
+.idea
+dump.rdb
+.DS_Store
+*.iml
+*.ipr
+*.iws
+public
+.tmp
+dist
+logs
+.vscode/
+.yarnclean
