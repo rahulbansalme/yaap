@@ -26,7 +26,7 @@ app.get('/grab/:videoId', function (req, res) {
     });
 })
 
-var port = process.env.NODE_ENV === 'production' ? 443 : 9000
+var port = process.env.PORT || 9000;
 
 var server = app.listen(port, function () {
     var host = server.address().address
