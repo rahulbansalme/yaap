@@ -62,10 +62,7 @@
 
         // https://youtube2mp3api.com/@grab?vidID=kw4tT7SCmaY&format=mp3&streams=mp3&api=button
         $.ajax({
-            url: 'https://youtube2mp3api.com/@grab?vidID=' + videoId + '&format=mp3&streams=mp3&api=button',
-            headers: {
-                referer: 'https://youtube2mp3api.com/@api/button/mp3/' + videoId,
-            },
+            url: 'http://localhost:9000/grab/' + videoId,
             success: function(data) {
                 var song = $('<div></div>').html(data).find('a').attr('href');
                 if (song) {
