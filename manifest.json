@@ -1,0 +1,16 @@
+{
+    "name": "Youtube As Audio Player",
+    "version": "1.0",
+    "description": "Run youtube as audio only which saves bandwidth as well as best for office purpose :P",
+    "browser_action": {
+      "default_popup": "popup.html"
+    },
+    "permissions": ["activeTab"],
+    "icons": {
+        "16": "images/yaap-16.png",
+        "32": "images/yaap-32.png",
+        "48": "images/yaap-48.png",
+        "128": "images/yaap-128.png"
+    },
+    "manifest_version": 2
+}

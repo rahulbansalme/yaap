@@ -1,0 +1,12 @@
+{
+  "name": "Youtube As Audio Player",
+  "version": "1.0.0",
+  "description": "Youtube As Audio Player",
+  "engines": {
+    "node": "8.9.1"
+  },
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js"
+  }
+}
