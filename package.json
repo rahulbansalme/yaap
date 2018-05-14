@@ -1,13 +1,18 @@
 {
   "name": "youtube-as-audio-player",
-  "version": "1.0.0",
   "description": "Youtube As Audio Player",
+  "version": "1.0.0",
+  "homepage": "https://github.com/rahulbansalme/yaap",
+  "author": "Rahul Bansal (https://github.com/rahulbansalme | rahulbansal.171089@gmail.com)",
+  "repository": "rahulbansalme/yaap",
+  "bugs": {
+    "url": "https://github.com/rahulbansalme/yaap/issues"
+  },
   "engines": {
     "node": "8.9.1"
   },
-  "main": "server/index.js",
   "scripts": {
-    "start": "node server/index.js"
+    "start": "node src/server/index.js"
   },
   "dependencies": {
     "cors": "^2.8.4",

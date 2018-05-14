@@ -48,6 +48,11 @@
         };
     };
 
+    // validate the url
+    function validateUrl() {
+        
+    }
+
     // play the song
     function playMusic(event) {
         // fetch new url
@@ -61,20 +66,20 @@
         renderPlayerLoading();
 
         // https://youtube2mp3api.com/@grab?vidID=kw4tT7SCmaY&format=mp3&streams=mp3&api=button
-        $.ajax({
-            url: 'https://yaap-app.herokuapp.com/grab/' + videoId,
-            success: function(data) {
-                var song = $('<div></div>').html(data).find('a').attr('href');
-                if (song) {
-                    // render success
-                    renderPlayerSuccess(song);
-                }
-                else {
-                    // render failure
-                    renderPlayerFailure();
-                }
-            },
-        });
+        // $.ajax({
+        //     url: 'https://yaap-app.herokuapp.com/grab/' + videoId,
+        //     success: function(data) {
+        //         var song = $('<div></div>').html(data).find('a').attr('href');
+        //         if (song) {
+        //             // render success
+        //             renderPlayerSuccess(song);
+        //         }
+        //         else {
+        //             // render failure
+        //             renderPlayerFailure();
+        //         }
+        //     },
+        // });
     }
 
     // render a blank list
@@ -89,7 +94,7 @@
 
     // render player loading
     function renderPlayerLoading() {
-        $('#player').append('<img class="loader" src="images/gear.gif" width="35" />');
+        $('#player').append('<img class="loader" src="app/images/gear.gif" width="35" />');
     }
 
     // render player success
@@ -97,7 +102,7 @@
         if (song.indexOf('//') === 0) song = 'https:' + song;
         setTimeout(function (){
             $('#player').html('<audio controls autoplay><source src="' + song + '" /></audio>');
-        }, 100);
+        }, 1000);
     }
 
     // render player failure
