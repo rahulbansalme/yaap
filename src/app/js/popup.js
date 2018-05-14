@@ -49,37 +49,10 @@
     };
 
     // validate the url
-    function validateUrl() {
-        
-    }
-
-    // play the song
-    function playMusic(event) {
-        // fetch new url
-        var playId = event.target.id;
-        if (playId.indexOf('play-') === -1) return
-
-        // clear old interval
-        clearInterval(gearInterval);
-        var videoId = playId.replace('play-', '');
-        // start loading
-        renderPlayerLoading();
-
-        // https://youtube2mp3api.com/@grab?vidID=kw4tT7SCmaY&format=mp3&streams=mp3&api=button
-        // $.ajax({
-        //     url: 'https://yaap-app.herokuapp.com/grab/' + videoId,
-        //     success: function(data) {
-        //         var song = $('<div></div>').html(data).find('a').attr('href');
-        //         if (song) {
-        //             // render success
-        //             renderPlayerSuccess(song);
-        //         }
-        //         else {
-        //             // render failure
-        //             renderPlayerFailure();
-        //         }
-        //     },
-        // });
+    function validateUrl(url) {
+        var a = document.createElement('a');
+        a.href = url;
+        return 'https://' + a.hostname + a.pathname + (a.search && '?' + a.search);
     }
 
     // render a blank list
@@ -99,18 +72,57 @@
 
     // render player success
     function renderPlayerSuccess(song) {
-        if (song.indexOf('//') === 0) song = 'https:' + song;
-        setTimeout(function (){
-            $('#player').html('<audio controls autoplay><source src="' + song + '" /></audio>');
-        }, 1000);
+        var finalUrl = validateUrl(song);
+        $("#player").jPlayer( {
+            ready: function() {
+              $(this).jPlayer("setMedia", {
+                m4v: finalUrl // Defines the m4v url
+              }).jPlayer("play"); // Attempts to Auto-Play the media
+            },
+        });
     }
 
     // render player failure
-    function renderPlayerFailure() {
-        $('#player').html('<span class="error">Something went wrong! Please try again later!</span>');
+    function renderPlayerFailure(e) {
+        var error = e || 'Something went wrong! Please try again later!';
+        $('#player').html('<span class="error">' + error + '</span>');
         setTimeout(function() {
             $('#player').fadeOut();
         }, 1000)
+    }
+
+    // play the song
+    function playMusic(event) {
+        // fetch new url
+        var playId = event.target.id;
+        if (playId.indexOf('play-') === -1) return
+
+        // clear old interval
+        clearInterval(gearInterval);
+        var videoId = playId.replace('play-', '');
+        // start loading
+        renderPlayerLoading();
+
+        // https://youtube2mp3api.com/@grab?vidID=kw4tT7SCmaY&format=mp3&streams=mp3&api=button
+        $.ajax({
+            url: 'https://yaap-app.herokuapp.com/grab/' + videoId,
+            success: function(data) {
+                try {
+                    var song = $('<div></div>').html(data).find('a').attr('href');
+                    if (song) {
+                        // render success
+                        renderPlayerSuccess(song);
+                    }
+                    else {
+                        // render failure
+                        renderPlayerFailure();
+                    }
+                } catch(e) {
+                    // render failure
+                    renderPlayerFailure(e);
+                }
+            },
+        });
     }
 
     // init
