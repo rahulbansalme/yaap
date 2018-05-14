@@ -75,27 +75,6 @@
                 }
             },
         });
-
-        // $('#gear').attr('src', 'https://youtube2mp3api.com/@api/button/mp3/' + videoId);
-        // gearInterval = setInterval(function() {
-        //     var iframeContent = $('#gear').html();
-        //     var downloadLink = $("<div></div>").html(iframeContent).find('#download_link').find('a')
-        //     if (downloadLink || gearTryCount === 5) {
-        //         gearTryCount = 0;
-        //         clearInterval(gearInterval);
-        //         var song = downloadLink && downloadLink.attr('href');
-        //         if (song) {
-        //             // render success
-        //             renderPlayerSuccess(song);
-        //         }
-        //         else {
-        //             // render failure
-        //             renderPlayerFailure();
-        //         }
-        //         return;
-        //     }
-        //     gearTryCount++
-        // }, 1000);
     }
 
     // render a blank list
@@ -110,12 +89,15 @@
 
     // render player loading
     function renderPlayerLoading() {
-        $('#player').html('<img src="images/gear.gif" width="35" />');
+        $('#player').append('<img class="loader" src="images/gear.gif" width="35" />');
     }
 
     // render player success
     function renderPlayerSuccess(song) {
-        $('#player').html('<audio controls autoplay><source src="' + song + '" /></audio>');
+        if (song.indexOf('//') === 0) song = 'https:' + song;
+        setTimeout(function (){
+            $('#player').html('<audio controls autoplay><source src="' + song + '" /></audio>');
+        }, 100);
     }
 
     // render player failure
